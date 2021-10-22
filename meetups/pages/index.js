@@ -2,6 +2,7 @@ import MeetupList from "../components/meetups/MeetupList";
 import { MongoClient } from "mongodb";
 import Head from "next/head";
 import { Fragment } from "react";
+import mongoUrl from "../url";
 
 function HomePage(props) {
   return (
@@ -32,9 +33,7 @@ function HomePage(props) {
 export async function getStaticProps() {
   //fetch data from an API
 
-  const client = await MongoClient.connect(
-    "mongodb+srv://sushil:wcazsedqx17S1@cluster0.hvxmi.mongodb.net/meetups?retryWrites=true&w=majority"
-  );
+  const client = await MongoClient.connect(mongoUrl);
   const db = client.db();
 
   const meetupsCollection = db.collection("meetups");
